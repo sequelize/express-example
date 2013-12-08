@@ -1,6 +1,7 @@
 var express = require('express')
   , routes  = require('./routes')
   , user    = require('./routes/user')
+  , task    = require('./routes/task')
   , http    = require('http')
   , path    = require('path')
   , db      = require('./models')
@@ -25,11 +26,13 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', routes.index)
-app.get('/users', user.list)
+app.post('/users/create', user.create)
+app.post('/users/:user_id/tasks/create', task.create)
+app.get('/users/:user_id/tasks/:task_id/destroy', task.destroy)
 
 db
   .sequelize
-  .sync()
+  .sync({ force: true })
   .complete(function(err) {
     if (err) {
       throw err
