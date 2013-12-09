@@ -16,7 +16,9 @@ fs
   })
 
 Object.keys(db).forEach(function(modelName) {
-  db[modelName].options.associate(db)
+  if (db[modelName].options.hasOwnProperty('associate')) {
+    db[modelName].options.associate(db)
+  }
 })
 
 module.exports = lodash.extend({
