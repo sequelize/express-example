@@ -7,7 +7,7 @@ block content
   h2 Creating a new user
   form(action="/users/create", method="post")
     input(type="text", name="username")
-    input(type="submit") Create
+    input(type="submit")
 
   h2 Users
 
@@ -20,7 +20,7 @@ block content
           | Creating a new task:
           form(action="/users/" + user.id + "/tasks/create", method="post", style="display: inline")
             input(type="text", name="title")
-            input(type="submit") Create
+            input(type="submit")
         each task in user.tasks
           li
             = task.title
