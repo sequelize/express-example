@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     username: DataTypes.STRING
   }, {
     associate: function(models) {
-      User.hasMany(models.Task)
+      User.hasMany(models.Task, {as: 'tasks'})
     }
   })
 
