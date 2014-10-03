@@ -2,4 +2,29 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p This is Sequelize greeting you :)
+
+  h2 Creating a new user
+  form(action="/users/create", method="post")
+    input(type="text", name="username")
+    input(type="submit")
+
+  h2 Users
+
+  ul
+  each user in users
+    li
+      = user.username
+      ul
+        li
+          | Creating a new task:
+          form(action="/users/" + user.id + "/tasks/create", method="post", style="display: inline")
+            input(type="text", name="title")
+            input(type="submit")
+        each task in user.Tasks
+          li
+            = task.title
+            | &nbsp;
+            | (
+            a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy") Destroy
+            | )

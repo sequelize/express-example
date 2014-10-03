@@ -1,9 +1,16 @@
+var models  = require('../models');
 var express = require('express');
-var router = express.Router();
+var router  = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  models.User.findAll({
+    include: [ models.Task ]
+  }).success(function(users) {
+    res.render('index', {
+      title: 'Express',
+      users: users
+    });
+  });
 });
 
 module.exports = router;
