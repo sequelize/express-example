@@ -10,6 +10,21 @@ router.post('/create', function(req, res) {
   });
 });
 
+router.get('/:user_id/destroy', function(req, res) {
+  models.User.find({
+    where: {id: req.param('user_id')},
+    include: [models.Task]
+  }).success(function(user) {
+    models.Task.destroy(
+      {where: {UserId: user.id}}
+    ).success(function(affectedRows) {
+      user.destroy().success(function() {
+        res.redirect('/');
+      });
+    });
+  });
+});
+
 router.post('/:user_id/tasks/create', function (req, res) {
   models.User.find({
     where: { id: req.param('user_id') }
