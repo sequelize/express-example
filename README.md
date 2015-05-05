@@ -11,6 +11,7 @@ npm start
 ```
 
 This will start the application and create an sqlite database in your app dir.
+Just open [http://localhost:3000](http://localhost:3000).
 
 ## The setup
 
@@ -81,3 +82,7 @@ models.sequelize.sync().then(function () {
 
 And finally you have to adjust the `config/config.json` to fit your environment.
 Once thats done, your database configuration is ready!
+
+## The tests
+
+You can run the tests by executing `npm test`.
