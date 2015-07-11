@@ -11,47 +11,31 @@ router.post('/create', function(req, res) {
 });
 
 router.get('/:user_id/destroy', function(req, res) {
-  models.User.find({
-    where: {id: req.param('user_id')},
-    include: [models.Task]
-  }).then(function(user) {
-    models.Task.destroy(
-      {where: {UserId: user.id}}
-    ).then(function(affectedRows) {
-      user.destroy().then(function() {
-        res.redirect('/');
-      });
-    });
+  models.User.destroy({
+    where: {
+      id: req.param('user_id')
+    }
+  }).then(function() {
+    res.redirect('/');
   });
 });
 
 router.post('/:user_id/tasks/create', function (req, res) {
-  models.User.find({
-    where: { id: req.param('user_id') }
-  }).then(function(user) {
-    models.Task.create({
-      title: req.param('title')
-    }).then(function(title) {
-      title.setUser(user).then(function() {
-        res.redirect('/');
-      });
-    });
+  models.Task.create({
+    title: req.param('title'),
+    UserId: req.param('user_id')
+  }).then(function() {
+    res.redirect('/');
   });
 });
 
 router.get('/:user_id/tasks/:task_id/destroy', function (req, res) {
-  models.User.find({
-    where: { id: req.param('user_id') }
-  }).then(function(user) {
-    models.Task.find({
-      where: { id: req.param('task_id') }
-    }).then(function(task) {
-      task.setUser(null).then(function() {
-        task.destroy().then(function() {
-          res.redirect('/');
-        });
-      });
-    });
+  models.Task.destroy({
+    where: {
+      id: req.param('task_id')
+    }
+  }).then(function() {
+    res.redirect('/');
   });
 });
 
