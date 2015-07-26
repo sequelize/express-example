@@ -75,15 +75,7 @@ var models = require("../models");
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 models.sequelize.sync().then(function () {
   server.listen(port);
@@ -91,17 +83,9 @@ models.sequelize.sync().then(function () {
   server.on('listening', onListening);
 });
 
-function normalizePort(val) {
-  // ...
-}
-
-function onError(error) {
-  // ...
-}
-
-function onListening() {
-  // ...
-}
+function normalizePort(val) { /* ... */ }
+function onError(error) { /* ... */ }
+function onListening() { /* ... */ }
 ```
 
 And finally you have to adjust the `config/config.json` to fit your environment.
