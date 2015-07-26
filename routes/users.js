@@ -4,7 +4,7 @@ var router  = express.Router();
 
 router.post('/create', function(req, res) {
   models.User.create({
-    username: req.param('username')
+    username: req.body.username
   }).then(function() {
     res.redirect('/');
   });
@@ -13,7 +13,7 @@ router.post('/create', function(req, res) {
 router.get('/:user_id/destroy', function(req, res) {
   models.User.destroy({
     where: {
-      id: req.param('user_id')
+      id: req.params.user_id
     }
   }).then(function() {
     res.redirect('/');
@@ -22,8 +22,8 @@ router.get('/:user_id/destroy', function(req, res) {
 
 router.post('/:user_id/tasks/create', function (req, res) {
   models.Task.create({
-    title: req.param('title'),
-    UserId: req.param('user_id')
+    title: req.body.title,
+    UserId: req.params.user_id
   }).then(function() {
     res.redirect('/');
   });
@@ -32,7 +32,7 @@ router.post('/:user_id/tasks/create', function (req, res) {
 router.get('/:user_id/tasks/:task_id/destroy', function (req, res) {
   models.Task.destroy({
     where: {
-      id: req.param('task_id')
+      id: req.params.task_id
     }
   }).then(function() {
     res.redirect('/');
