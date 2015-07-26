@@ -67,17 +67,41 @@ you have to adjust the `bin/www` file to this:
 ```js
 #!/usr/bin/env node
 
-var debug = require('debug')('express-example');
 var app = require('../app');
+var debug = require('debug')('init:server');
+var http = require('http');
 var models = require("../models");
 
-app.set('port', process.env.PORT || 3000);
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
 
 models.sequelize.sync().then(function () {
-  var server = app.listen(app.get('port'), function() {
-    debug('Express server listening on port ' + server.address().port);
-  });
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
 });
+
+function normalizePort(val) {
+  // ...
+}
+
+function onError(error) {
+  // ...
+}
+
+function onListening() {
+  // ...
+}
 ```
 
 And finally you have to adjust the `config/config.json` to fit your environment.
