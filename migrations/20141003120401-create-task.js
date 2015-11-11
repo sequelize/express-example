@@ -1,17 +1,15 @@
 "use strict";
 
 module.exports = {
-  up: function(migration, DataTypes, done) {
-    migration
+  up: function(queryInterface, Sequelize) {
+    queryInterface
       .createTable('Tasks', {
-        title: DataTypes.STRING
-      })
-      .complete(done)
+        title: Sequelize.STRING
+      });
   },
 
-  down: function(migration, DataTypes, done) {
-    migration
-      .dropTable('Tasks')
-      .complete(done)
+  down: function(queryInterface, Sequelize) {
+    queryInterface
+      .dropTable('Tasks');
   }
 };
