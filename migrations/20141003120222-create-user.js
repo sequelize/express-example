@@ -2,14 +2,14 @@
 
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    queryInterface
+    return queryInterface
       .createTable('Users', {
         username: Sequelize.STRING
       });
   },
 
   down: function(queryInterface, Sequelize) {
-    queryInterface
+    return queryInterface
       .dropTable('Users');
   }
 };
