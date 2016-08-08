@@ -3,6 +3,10 @@
 var expect = require('expect.js');
 
 describe('models/task', function () {
+  before(function () {
+      return require('../../models').sequelize.sync();
+  });
+
   beforeEach(function () {
     this.User = require('../../models').User;
     this.Task = require('../../models').Task;
