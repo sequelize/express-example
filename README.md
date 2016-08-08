@@ -1,9 +1,9 @@
-# express-example
+# Express Example
 
-This repository demonstrates the usage of sequelize within an express application.
+This repository demonstrates the usage of Sequelize within an [Express](https://expressjs.com) application.
 The implemented logic is a simple task tracking tool.
 
-## Starting the app
+## Starting App
 
 ```
 npm install
@@ -13,20 +13,43 @@ npm start
 This will start the application and create an sqlite database in your app dir.
 Just open [http://localhost:3000](http://localhost:3000).
 
-## The setup
+## Running Tests
+
+We have added some [Mocha](https://mochajs.org) based test. You can run them by `npm test`
+
+
+## Setup in Details
 
 In order to understand how this application has been built, you can find the
 executed steps in the following snippet. You should be able to adjust those
 steps according to your needs. Please note that the view and the routes aren't
 described. You can find those files in the repo.
 
+#### Express Setup
+
+First we will create a bare Express App using `express-generator` [Express Generator](https://expressjs.com/en/starter/generator.html)
 ```bash
+# install express generator globally
+npm install -g express-generator
+
+# create the sample app
 mkdir express-example
 cd express-example
-npm install express-generator
-node_modules/.bin/express -f
+express -f
+
+# install all node modules
 npm install
-npm install --save sequelize@2.0.0-rc1 sequelize-cli sqlite3
+```
+
+#### Sequelize Setup
+
+Now we will install all sequelize related modules.
+
+```bash
+# install ORM , CLI and SQLite dialect
+npm install --save sequelize sequelize-cli sqlite3
+
+# generate models
 node_modules/.bin/sequelize init
 node_modules/.bin/sequelize model:create --name User --attributes username:string
 node_modules/.bin/sequelize model:create --name Task --attributes title:string
@@ -34,7 +57,7 @@ node_modules/.bin/sequelize model:create --name Task --attributes title:string
 
 You will now have a basic express application with some additional directories
 (config, models, migrations). Also you will find two migrations and models.
-One for the User and one for the Task.
+One for the `User` and one for the `Task`.
 
 In order to associate the models with each other, you need to change the models
 like this:
@@ -77,6 +100,7 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+// sync() will create all table if they doesn't exist in database
 models.sequelize.sync().then(function () {
   server.listen(port);
   server.on('error', onError);
@@ -90,7 +114,3 @@ function onListening() { /* ... */ }
 
 And finally you have to adjust the `config/config.json` to fit your environment.
 Once thats done, your database configuration is ready!
-
-## The tests
-
-You can run the tests by executing `npm test`.
