@@ -1,15 +1,17 @@
 {
-  "name": "express-example",
-  "scripts": {
-  },
-  "env": {
-  },
-  "formation": {
-  },
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ]
+    "addons": [
+        {
+            "plan": "heroku-postgresql"
+        }
+    ],
+    "buildpacks": [],
+    "env": {
+        "NODE_ENV": {
+            "description": "Run as a production environment on Heroku",
+            "value": "production"
+        }
+    },
+    "formation": {},
+    "name": "express-example",
+    "scripts": {}
 }
