@@ -7,8 +7,18 @@ The implemented logic is a simple task tracking tool.
 
 ## Starting App
 
+### Without Migrations
+
 ```
 npm install
+npm start
+```
+
+### With Migrations
+
+```
+npm install
+./node_modules/.bin/sequelize db:migrate
 npm start
 ```
 
@@ -69,7 +79,12 @@ like this:
 // ...
 classMethods: {
   associate: function(models) {
-    Task.belongsTo(models.User);
+    Task.belongsTo(models.User, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
   }
 }
 // ...
