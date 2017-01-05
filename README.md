@@ -7,18 +7,18 @@ The implemented logic is a simple task tracking tool.
 
 ## Starting App
 
-### Without Migrations
+**Without Migrations**
 
 ```
 npm install
 npm start
 ```
 
-### With Migrations
+**With Migrations**
 
 ```
 npm install
-./node_modules/.bin/sequelize db:migrate
+node_modules/.bin/sequelize db:migrate
 npm start
 ```
 
