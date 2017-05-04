@@ -1,5 +1,7 @@
 # Express Example
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/sequelize/express-example.svg)](https://greenkeeper.io/)
+
 This repository demonstrates the usage of Sequelize within an [Express](https://expressjs.com) application.
 The implemented logic is a simple task tracking tool.
 
