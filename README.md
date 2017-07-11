@@ -77,8 +77,9 @@ like this:
 ```js
 // task.js
 // ...
-classMethods: {
-  associate: function(models) {
+  Task.associate = function(models) {
+    // Using additional options like CASCADE etc for demonstration
+    // Can also simply do Task.belongsTo(models.User);
     Task.belongsTo(models.User, {
       onDelete: "CASCADE",
       foreignKey: {
@@ -86,18 +87,15 @@ classMethods: {
       }
     });
   }
-}
 // ...
 ```
 
 ```js
 // user.js
 // ...
-classMethods: {
-  associate: function(models) {
-    User.hasMany(models.Task)
+  User.associate = function(models) {
+    User.hasMany(models.Task);
   }
-}
 // ...
 ```
 
