@@ -113,10 +113,10 @@ var models = require("../models");
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-var server = http.createServer(app);
-
+var server = {};
 // sync() will create all table if they doesn't exist in database
 models.sequelize.sync().then(function () {
+  server = http.createServer(app);
   server.listen(port);
   server.on('error', onError);
   server.on('listening', onListening);
