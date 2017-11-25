@@ -3,31 +3,36 @@ extends layout
 block content
   h1= title
 
-  h2 Create a new user
-  form(action="/users/create", method="post")
-    input(type="text", name="username")
-    input(type="submit")
+  div(class="col-md-4")
+    h2 Create user
 
-  h2 Users
+    form(action="/users/create", method="post", class="well")
+      div(class="form-group")
+        label(for="username")
+          | Username
+        input(type="text", name="username", class="form-control")
+      input(type="submit" class="btn btn-default")
 
-  ul
-  each user in users
-    li
-      = user.username
-      | &nbsp;
-      | (
-      a(href="/users/" + user.id + "/destroy") Destroy
-      | )
-      ul
-        li
-          | Create a new task:
-          form(action="/users/" + user.id + "/tasks/create", method="post", style="display: inline")
-            input(type="text", name="title")
-            input(type="submit")
-        each task in user.Tasks
+  div(class="col-md-6")
+    h2 Users
+
+    ul
+    each user in users
+      li
+        strong
+          = user.username
+        | &nbsp;
+        a(href="/users/" + user.id + "/destroy", class="btn btn-xs btn-warning") delete
+        ul
           li
-            = task.title
-            | &nbsp;
-            | (
-            a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy") Destroy
-            | )
+            | Create task
+            form(action="/users/" + user.id + "/tasks/create", method="post", class="form-inline")
+              div(class="form-group")
+                input(type="text", name="title", class="input-sm form-control")
+                input(type="submit", class="btn btn-sm btn-default")
+          each task in user.Tasks
+            li
+              strong
+                = task.title
+              | &nbsp;
+              a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy",  class="btn btn-xs btn-warning") delete

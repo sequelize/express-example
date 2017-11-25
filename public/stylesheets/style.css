@@ -15,6 +15,6 @@ h1 {
   font-size: 35px;
 }
 
-input[type=submit], input[type=text] {
-  margin-left: 10px
+ul li {
+  padding: 5px;
 }
