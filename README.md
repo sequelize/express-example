@@ -67,6 +67,17 @@ node_modules/.bin/sequelize model:create --name User --attributes username:strin
 node_modules/.bin/sequelize model:create --name Task --attributes title:string
 ```
 
+We are using `.sequelizerc` setup change config path for migrations. You can read more about this in [migration docs](http://docs.sequelizejs.com/manual/tutorial/migrations.html#the-sequelizerc-file)
+
+```js
+// .sequelizerc
+const path = require('path');
+
+module.exports = {
+  'config': path.resolve('config', 'config.js')
+}
+```
+
 You will now have a basic express application with some additional directories
 (config, models, migrations). Also you will find two migrations and models.
 One for the `User` and one for the `Task`.
@@ -99,6 +110,23 @@ like this:
 // ...
 ```
 
+This association will create an attribute `UserId` in `Task` model. We have to amend our `create-task` migration and add this column.
+
+```js
+// xxxxxxx-create-task.js
+// ...
+  UserId: {
+    type: Sequelize.INTEGER,
+    onDelete: "CASCADE",
+    allowNull: false,
+    references: {
+      model: 'Users',
+      key: 'id'
+    }
+  }
+// ...
+```
+
 If you want to use the automatic table creation that sequelize provides,
 you have to adjust the `bin/www` file to this:
 
@@ -127,5 +155,5 @@ function onError(error) { /* ... */ }
 function onListening() { /* ... */ }
 ```
 
-And finally you have to adjust the `config/config.json` to fit your environment.
+And finally you have to adjust the `config/config.js` to fit your environment.
 Once thats done, your database configuration is ready!
