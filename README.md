@@ -45,9 +45,8 @@ First we will create a bare Express App using `express-generator` [Express Gener
 npm install -g express-generator
 
 # create the sample app
-mkdir express-example
+express express-example
 cd express-example
-express -f
 
 # install all node modules
 npm install
