@@ -3,40 +3,41 @@ extends layout
 block content
   h1= title
 
-  div(class="col-md-4")
-    h2 Create user
+  div(class="row")
+    div(class="col-md-4")
+      h2 Create user
 
-    form(action="/users/create", method="post", class="card")
-      div(class="card-body")
-        div(class="form-group")
-          label(for="username")
-            | Username
-          input(type="text", name="username", class="form-control", id="username")
-        input(type="submit" class="btn btn-secondary")
+      form(action="/users/create", method="post", class="card")
+        div(class="card-body")
+          div(class="form-group")
+            label(for="username")
+              | Username
+            input(type="text", name="username", class="form-control", id="username")
+          input(type="submit" class="btn btn-secondary")
 
-  div(class="col-md-6")
-    h2 Users
+    div(class="col-md-6")
+      h2 Users
 
-    ul
-      each user in users
-        li
-          strong
-            = user.username
-          | &nbsp;
-          a(href="/users/" + user.id + "/destroy", class="btn btn-sm btn-warning") delete
-          ul
-            li
-              form(action="/users/" + user.id + "/tasks/create", method="post")
-                div(class="form-group")
-                  label(for="task")
-                    | Create task
-                  div(class="input-group")
-                    input(type="text", name="title", class="form-control-sm form-control", id="task")
-                    div(class="input-group-append")
-                      input(type="submit", class="btn btn-sm btn-secondary")
-            each task in user.Tasks
+      ul
+        each user in users
+          li
+            strong
+              = user.username
+            | &nbsp;
+            a(href="/users/" + user.id + "/destroy", class="btn btn-sm btn-warning") delete
+            ul
               li
-                strong
-                  = task.title
-                | &nbsp;
-                a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy",  class="btn btn-sm btn-warning") delete
+                form(action="/users/" + user.id + "/tasks/create", method="post")
+                  div(class="form-group")
+                    label(for="task")
+                      | Create task
+                    div(class="input-group")
+                      input(type="text", name="title", class="form-control-sm form-control", id="task")
+                      div(class="input-group-append")
+                        input(type="submit", class="btn btn-sm btn-secondary")
+              each task in user.Tasks
+                li
+                  strong
+                    = task.title
+                  | &nbsp;
+                  a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy",  class="btn btn-sm btn-warning") delete
