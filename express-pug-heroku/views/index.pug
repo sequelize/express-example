@@ -6,12 +6,13 @@ block content
   div(class="col-md-4")
     h2 Create user
 
-    form(action="/users/create", method="post", class="well")
-      div(class="form-group")
-        label(for="username")
-          | Username
-        input(type="text", name="username", class="form-control")
-      input(type="submit" class="btn btn-default")
+    form(action="/users/create", method="post", class="card")
+      div(class="card-body")
+        div(class="form-group")
+          label(for="username")
+            | Username
+          input(type="text", name="username", class="form-control", id="username")
+        input(type="submit" class="btn btn-secondary")
 
   div(class="col-md-6")
     h2 Users
@@ -22,17 +23,20 @@ block content
           strong
             = user.username
           | &nbsp;
-          a(href="/users/" + user.id + "/destroy", class="btn btn-xs btn-warning") delete
+          a(href="/users/" + user.id + "/destroy", class="btn btn-sm btn-warning") delete
           ul
             li
-              | Create task
-              form(action="/users/" + user.id + "/tasks/create", method="post", class="form-inline")
+              form(action="/users/" + user.id + "/tasks/create", method="post")
                 div(class="form-group")
-                  input(type="text", name="title", class="input-sm form-control")
-                  input(type="submit", class="btn btn-sm btn-default")
+                  label(for="task")
+                    | Create task
+                  div(class="input-group")
+                    input(type="text", name="title", class="form-control-sm form-control", id="task")
+                    div(class="input-group-append")
+                      input(type="submit", class="btn btn-sm btn-secondary")
             each task in user.Tasks
               li
                 strong
                   = task.title
                 | &nbsp;
-                a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy",  class="btn btn-xs btn-warning") delete
+                a(href="/users/" + user.id + "/tasks/" + task.id + "/destroy",  class="btn btn-sm btn-warning") delete
