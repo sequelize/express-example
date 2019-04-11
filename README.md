@@ -58,7 +58,7 @@ Now we will install all sequelize related modules.
 
 ```bash
 # install ORM , CLI and SQLite dialect
-npm install --save sequelize sequelize-cli sqlite3
+npm install sequelize sequelize-cli sqlite3
 
 # generate models
 node_modules/.bin/sequelize init
