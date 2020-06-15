@@ -10,6 +10,7 @@
     "lint": "eslint */**/*.js"
   },
   "dependencies": {
+    "@ljharb/eslint-config": "^17.1.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -23,6 +24,7 @@
     "sqlite3": "^4.2.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.2.0",
     "eslint-config-standard": "^14.1.1",
@@ -30,6 +32,10 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-medikoo-es5": "^2.0.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.20.0",
     "expect.js": "^0.3.1",
     "mocha": "^3.5.3",
     "supertest": "^2.0.1"
