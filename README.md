@@ -66,6 +66,11 @@ node_modules/.bin/sequelize model:create --name User --attributes username:strin
 node_modules/.bin/sequelize model:create --name Task --attributes title:string
 ```
 
+```bash
+# spaces matter when specifying multiple attributes, ex:
+node_modules/.bin/sequelize model:create --name Task --attributes title:string,body:string
+```
+
 We are using `.sequelizerc` setup change config path for migrations. You can read more about this in [migration docs](http://docs.sequelizejs.com/manual/tutorial/migrations.html#the-sequelizerc-file)
 
 ```js
@@ -75,6 +80,12 @@ const path = require('path');
 module.exports = {
   'config': path.resolve('config', 'config.js')
 }
+```
+
+Don't forget to modify the config.js file to export the json blob or `db:*` commands will fail. See `config/config.js`
+
+```js
+module.exports = //json blob
 ```
 
 You will now have a basic express application with some additional directories
