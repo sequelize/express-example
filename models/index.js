@@ -6,7 +6,6 @@ var Sequelize = require('sequelize')
 var basename = path.basename(__filename)
 var env = process.env.NODE_ENV || 'development'
 var config = require('../config/config')[env]
-var db = {}
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable], config)
@@ -18,9 +17,10 @@ fs
   .readdirSync(__dirname)
   .filter(file => file !== basename && file.slice(-3) === '.js')
   .forEach(file => {
-    var model = sequelize.import(path.join(__dirname, file))
-    db[model.name] = model
-  })
+    sequelize.import(path.join(__dirname, file));
+  });
+
+const db = sequelize.models;
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
