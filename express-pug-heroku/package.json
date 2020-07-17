@@ -1,7 +1,6 @@
 {
-  "name": "express-example",
+  "name": "sequelize-express-pug-heroku",
   "version": "0.0.0",
-  "private": false,
   "scripts": {
     "start": "cross-env DEBUG=express-sequelize node ./bin/www",
     "test": "npm run test-unit && npm run test-integration",
