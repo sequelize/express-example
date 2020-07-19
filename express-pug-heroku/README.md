@@ -19,24 +19,19 @@ npm start
 
 ```
 npm install
-node_modules/.bin/sequelize db:migrate
+npx sequelize db:migrate
 npm start
 ```
 
-This will start the application and create an sqlite database in your app dir.
-Just open [http://localhost:3000](http://localhost:3000).
+This will start the application and create an SQLite database in your app dir. Just open [http://localhost:3000](http://localhost:3000).
 
 ## Running Tests
 
-We have added some [Mocha](https://mochajs.org) based test. You can run them by `npm test`
-
+We have added some [Mocha](https://mochajs.org) based test. You can run them by `npm test`.
 
 ## Setup in Details
 
-In order to understand how this application has been built, you can find the
-executed steps in the following snippet. You should be able to adjust those
-steps according to your needs. Please note that the view and the routes aren't
-described. You can find those files in the repo.
+In order to understand how this application has been built, you can find the executed steps in the following snippet. You should be able to adjust those steps according to your needs. Please note that the view and the routes aren't described. You can find those files in the repo.
 
 #### Express Setup
 
@@ -62,17 +57,17 @@ Now we will install all sequelize related modules.
 npm install sequelize sequelize-cli sqlite3
 
 # generate models
-node_modules/.bin/sequelize init
-node_modules/.bin/sequelize model:create --name User --attributes username:string
-node_modules/.bin/sequelize model:create --name Task --attributes title:string
+npx sequelize init
+npx sequelize model:create --name User --attributes username:string
+npx sequelize model:create --name Task --attributes title:string
 ```
 
 ```bash
 # spaces matter when specifying multiple attributes, ex:
-node_modules/.bin/sequelize model:create --name Task --attributes title:string,body:string
+npx sequelize model:create --name Task --attributes title:string,body:string
 ```
 
-We are using `.sequelizerc` setup change config path for migrations. You can read more about this in [migration docs](http://docs.sequelizejs.com/manual/tutorial/migrations.html#the-sequelizerc-file)
+We are using `.sequelizerc` setup change config path for migrations. You can read more about this in [migration docs](https://sequelize.org/master/manual/migrations.html#the--code--sequelizerc--code--file)
 
 ```js
 // .sequelizerc
@@ -83,18 +78,9 @@ module.exports = {
 }
 ```
 
-Don't forget to modify the config.js file to export the json blob or `db:*` commands will fail. See `config/config.js`
+You will now have a basic express application with some additional directories (config, models, migrations). Also you will find two migrations and models. One for the `User` and one for the `Task`.
 
-```js
-module.exports = //json blob
-```
-
-You will now have a basic express application with some additional directories
-(config, models, migrations). Also you will find two migrations and models.
-One for the `User` and one for the `Task`.
-
-In order to associate the models with each other, you need to change the models
-like this:
+In order to associate the models with each other, you need to change the models like this:
 
 ```js
 // task.js
@@ -144,15 +130,15 @@ you have to adjust the `bin/www` file to this:
 ```js
 #!/usr/bin/env node
 
-var app = require('../app');
-var debug = require('debug')('init:server');
-var http = require('http');
-var models = require("../models");
+const app = require('../app');
+const debug = require('debug')('init:server');
+const http = require('http');
+const models = require("../models");
 
-var port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 // sync() will create all table if they doesn't exist in database
 models.sequelize.sync().then(function () {
