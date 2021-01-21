@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    legend New Post
+    form(action="/posts" method="POST")#new-post
+      label(for='title') Title
+      input.form-control(type='text', name='title')
+      br
+      label(for='body') Body
+      textarea.form-control(name='body', id='', cols='30', rows='10')
+      br
+      button(type="submit") Save

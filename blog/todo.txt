@@ -1,0 +1,38 @@
+todo.txt
+
+Add sequelize
+1. install on machine
+1. add to project
+1. intiailize using config file
+1. sync on models and then listen on app port
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+  /**
+   * Create HTTP server.
+   */
+var server = http.createServer(app);
+
+models.sequelize.sync().then(function() {
+  /**
+   * Listen on provided port, on all network interfaces.
+   */
+  server.listen(port, function() {
+    debug('Express server listening on port ' + server.address().port);
+  });
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+
+1. for associations, create migration to add column with 'references' option
+      UserId: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
+      }
+
+1. BelongsToMany associations through

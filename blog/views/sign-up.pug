@@ -1,0 +1,15 @@
+legend New User
+form(action='/users', method="POST")
+  label(for='first_name') First Name
+  input(type='text', name='first_name')
+  br
+  label(for='last_name') Last Name
+  input(type='text', name='last_name')
+  br
+  label(for='password') Password
+  input(type='password', name='password')
+  br
+  label(for='bio') Bio
+  textarea(name='bio', id='', cols='30', rows='10')
+  br
+  button(type="submit") Save
