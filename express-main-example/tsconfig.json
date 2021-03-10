@@ -2,8 +2,8 @@
 	"compilerOptions": {
 		"target": "es5",
 		"module": "commonjs",
-		"strict": false,
-		"noImplicitAny": false,
+		"strict": true,
+		"noImplicitAny": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
