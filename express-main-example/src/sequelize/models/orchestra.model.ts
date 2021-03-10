@@ -1,4 +1,4 @@
-import { DataTypes, ModelDefined } from "sequelize";
+import { DataTypes, ModelDefined, Optional } from "sequelize";
 import sequelize from "../connection";
 
 interface OrchestraAttributes {
@@ -6,9 +6,10 @@ interface OrchestraAttributes {
 	name: string;
 }
 
-// we can omit the 'id' field, since we aren't required
+// we can make the 'id' field optional, since we aren't required
 // to set it manually when creating a new entry
-interface OrchestraCreationAttributes extends Omit<OrchestraAttributes, "id"> {}
+interface OrchestraCreationAttributes
+	extends Optional<OrchestraAttributes, "id"> {}
 
 export const Orchestra: ModelDefined<
 	OrchestraAttributes,
