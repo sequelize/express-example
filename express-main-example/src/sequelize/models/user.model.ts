@@ -6,6 +6,8 @@ interface UserAttributes {
 	username: string;
 }
 
+// we can omit the 'id' field, since we aren't required
+// to set it manually when creating a new entry
 interface UserCreationAttributes extends Omit<UserAttributes, "id"> {}
 
 export const User: ModelDefined<

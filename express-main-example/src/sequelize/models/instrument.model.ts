@@ -5,9 +5,15 @@ interface InstrumentAttributes {
 	id: number;
 	type: string;
 	purchaseDate: Date;
+
+	// We need to specify the 'orchestraId' field here,
+	// because it will automatically be defined later on
+	// when Sequelize applies the associations
 	orchestraId: number;
 }
 
+// we can omit the 'id' field, since we aren't required
+// to set it manually when creating a new entry
 interface InstrumentCreationAttributes
 	extends Omit<InstrumentAttributes, "id"> {}
 
