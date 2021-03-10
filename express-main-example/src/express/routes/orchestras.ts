@@ -1,14 +1,13 @@
 import { Request, Response } from "express";
-import sequelize from "../../sequelize";
+import { Instrument } from "../../sequelize/models/instrument.model";
+import { Orchestra } from "../../sequelize/models/orchestra.model";
 import { getIdParam } from "../helpers";
-
-const { models } = sequelize;
 
 export async function getAll(req: Request, res: Response) {
 	const orchestras =
 		"includeInstruments" in req.query
-			? await models.orchestra.findAll({ include: models.instrument })
-			: await models.orchestra.findAll();
+			? await Orchestra.findAll({ include: Instrument })
+			: await Orchestra.findAll();
 	res.status(200).json(orchestras);
 }
 
@@ -16,8 +15,8 @@ export async function getById(req: Request, res: Response) {
 	const id = getIdParam(req);
 	const orchestra =
 		"includeInstruments" in req.query
-			? await models.orchestra.findByPk(id, { include: models.instrument })
-			: await models.orchestra.findByPk(id);
+			? await Orchestra.findByPk(id, { include: Instrument })
+			: await Orchestra.findByPk(id);
 	if (orchestra) {
 		res.status(200).json(orchestra);
 	} else {
@@ -33,7 +32,7 @@ export async function create(req: Request, res: Response) {
 				`Bad request: ID should not be provided, since it is determined automatically by the database.`
 			);
 	} else {
-		await models.orchestra.create(req.body);
+		await Orchestra.create(req.body);
 		res.status(201).end();
 	}
 }
@@ -43,9 +42,9 @@ export async function update(req: Request, res: Response) {
 
 	// We only accept an UPDATE request if the `:id` param matches the body `id`
 	if (req.body.id === id) {
-		await models.orchestra.update(req.body, {
+		await Orchestra.update(req.body, {
 			where: {
-				id: id,
+				id,
 			},
 		});
 		res.status(200).end();
@@ -60,9 +59,9 @@ export async function update(req: Request, res: Response) {
 
 export async function remove(req: Request, res: Response) {
 	const id = getIdParam(req);
-	await models.orchestra.destroy({
+	await Orchestra.destroy({
 		where: {
-			id: id,
+			id,
 		},
 	});
 	res.status(200).end();

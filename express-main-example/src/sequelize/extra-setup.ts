@@ -1,8 +1,7 @@
-import { Sequelize } from "sequelize/types";
+import { Instrument } from "./models/instrument.model";
+import { Orchestra } from "./models/orchestra.model";
 
-export function applyExtraSetup(sequelize: Sequelize) {
-	const { instrument, orchestra } = sequelize.models;
-
-	orchestra.hasMany(instrument);
-	instrument.belongsTo(orchestra);
+export function applyExtraSetup() {
+	Orchestra.hasMany(Instrument);
+	Instrument.belongsTo(Orchestra);
 }
