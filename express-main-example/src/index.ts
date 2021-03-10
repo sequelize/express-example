@@ -1,5 +1,10 @@
 import app from "./express/app";
+
+// it is important to import sequelize at least once in the app,
+// as this will create the database connection, and also create the relations
+// between all models.
 import sequelize from "./sequelize";
+
 const PORT = 8080;
 
 async function assertDatabaseConnectionOk() {
