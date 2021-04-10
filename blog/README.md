@@ -2,6 +2,12 @@
 
 This is an example of how to setup Sequelize and Express together in a project for NodeJS 10 and above.
 
+Some features of this example
+
+* It uses migrations
+* It does not use `.sync()`
+* It initializes the models in the `index.js` folder
+
 Feel free to download this and use as a starting point for your new project!
 
 This example uses PostgreSQL as a database engine.
