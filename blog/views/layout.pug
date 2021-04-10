@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    
+  body
+    a(href="/sign-up") Register
+    |  | 
+    a(href="/login") Login
+    
+    block content
+        
+
+    script(type="text/javascript" src="/vendor/jquery/dist/jquery.min.js")
+    script(type="text/javascript" src="/javascripts/posts.js")

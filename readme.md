@@ -1,10 +1,11 @@
 # Sequelize examples with Express
 
-This repository presents examples of using [Sequelize](https://sequelize.org/) in a project with [Express](https://github.com/expressjs/express#readme).
+This repository presents two examples of using [Sequelize](https://sequelize.org/) in projects with [Express](https://github.com/expressjs/express#readme).
 
-* [Basic Sequelize + Express example](https://github.com/sequelize/express-example/tree/master/express-main-example)
+* [Blog](https://github.com/sequelize/express-example/tree/master/blog): This project follows an MVC folder structure. It does not use `sync` and uses migrations and has no seeds.
+* [Orchestra](https://github.com/sequelize/express-example/tree/master/orchestra): This project follows a modular folder structure. It uses `sync` as well as seeds.
 
-* More examples will be added in the future! Stay tuned!
+* Submit a PR with more examples!
 
 ## License
 

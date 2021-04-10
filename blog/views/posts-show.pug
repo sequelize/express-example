@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1= post.title
+
+    form(action="/posts/#{post.id}/comments", method="POST")
+        textarea(name="body")
+        button(type="submit") Save
+
+    for comment in comments
+        .lead= comment.body

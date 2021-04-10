@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    a(href="/posts/new") New Post
+    form(action="/posts/search")
+        input(type="text" name="term" value="#{term}")
+        button(type="submit") Search
+
+    for post in posts
+        h1
+            a(href="/posts/#{post.id}") #{post.title}
