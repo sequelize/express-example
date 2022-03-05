@@ -10,14 +10,14 @@ This example uses SQLite as a database engine, since it works directly with the 
 
 * Install dependencies with `npm install` or `yarn install`
 * Run the express server with `npm start`
-* Open your browser in `localhost:8000` and try the example REST endpoints:
-	* `localhost:8000/api/users` (GET)
-	* `localhost:8000/api/users/1` (GET)
-	* `localhost:8000/api/users` (POST)
+* Open your browser in `localhost:8080` and try the example REST endpoints:
+	* `localhost:8080/api/users` (GET)
+	* `localhost:8080/api/users/1` (GET)
+	* `localhost:8080/api/users` (POST)
 		* Body format: `{ username: 'john' }`
-	* `localhost:8000/api/users/1` (PUT)
+	* `localhost:8080/api/users/1` (PUT)
 		* Body format: `{ username: 'john' }`
-	* `localhost:8000/api/users/1` (DELETE)
+	* `localhost:8080/api/users/1` (DELETE)
 
 ## Exercise: new model and new controller
 
