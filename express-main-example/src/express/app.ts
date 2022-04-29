@@ -1,22 +1,28 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express, { NextFunction, Request, Response } from "express";
+import { json, urlencoded } from "body-parser";
 
 const routes = {
-	users: require('./routes/users'),
-	instruments: require('./routes/instruments'),
-	orchestras: require('./routes/orchestras'),
+	users: require("./routes/users"),
+	instruments: require("./routes/instruments"),
+	orchestras: require("./routes/orchestras"),
 	// Add more routes here...
 	// items: require('./routes/items'),
 };
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
+
+type Handler = (
+	req?: Request,
+	res?: Response,
+	next?: NextFunction
+) => Promise<void> | void;
 
 // We create a wrapper to workaround async errors not being transmitted correctly.
-function makeHandlerAwareOfAsyncErrors(handler) {
-	return async function(req, res, next) {
+function makeHandlerAwareOfAsyncErrors(handler: Handler) {
+	return async function (req: Request, res: Response, next: NextFunction) {
 		try {
 			await handler(req, res);
 		} catch (error) {
@@ -26,7 +32,7 @@ function makeHandlerAwareOfAsyncErrors(handler) {
 }
 
 // We provide a root route just as an example
-app.get('/', (req, res) => {
+app.get("/", (req: Request, res: Response) => {
 	res.send(`
 		<h2>Hello, Sequelize + Express!</h2>
 		<p>Make sure you have executed <b>npm run setup-example-db</b> once to have a populated example database. Otherwise, you will get <i>'no such table'</i> errors.</p>
@@ -69,4 +75,4 @@ for (const [routeName, routeController] of Object.entries(routes)) {
 	}
 }
 
-module.exports = app;
+export default app;
